@@ -1,61 +1,92 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sewa Angkot Turbo
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Informasi Kelompok
+- **Nama Kelompok**: Turbo  
+- **Nama Team**: Luis Fauzan Morgan  
+- **Nama Project**: Sewa Angkot Turbo  
 
-## About Laravel
+## Deskripsi Project
+Sistem peminjaman angkot balap berbasis web menggunakan Laravel. Sistem ini punya 2 jenis user: Admin dan User, dengan fitur untuk mengelola peminjaman unit angkot.  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Authentication & Authorization
+- Semua user wajib login  
+- Role-based access (Admin vs User)  
+- Registrasi user baru  
+- Profile management (satu profile per user)  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Manajemen Unit
+- Setiap unit punya kode unik  
+- Unit bisa punya 2 kategori  
+- Cari unit berdasarkan nama  
+- CRUD unit (Admin only)  
 
-## Learning Laravel
+### Manajemen Kategori
+- Kategori untuk mengelompokkan unit  
+- CRUD kategori (Admin only)  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Sistem Peminjaman
+- User bisa meminjam maksimal 2 unit  
+- Durasi peminjaman maksimal 5 hari  
+- Denda otomatis kalau lewat batas  
+- User cuma bisa lihat unit yang dipinjam  
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Manajemen User
+- CRUD user (Admin only)  
+- User bisa ubah profile sendiri  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Riwayat Peminjaman
+- Admin bisa lihat semua riwayat peminjaman  
+- Admin bisa cetak laporan  
+- User cuma bisa lihat riwayat peminjaman sendiri  
 
-## Laravel Sponsors
+### Pengembalian Unit
+- Hanya Admin yang bisa mengembalikan unit  
+- User harus hubungi admin untuk pengembalian  
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Alur Website
 
-### Premium Partners
+### User
+1. Registrasi/Login  
+2. Dashboard: Browse Units, My Borrowings, Borrow Unit  
+3. Browse Units: lihat daftar unit, cari unit, lihat detail  
+4. Borrow Unit: pilih unit, isi form tanggal & durasi, validasi maksimal 2 unit aktif & durasi 5 hari  
+5. My Borrowings: lihat unit yang dipinjam, status peminjaman, tidak bisa mengembalikan sendiri  
+6. Profile: lihat & ubah profile, ubah password  
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Admin
+1. Login  
+2. Dashboard: Manage Users, Manage Categories, Manage Units, Manage Borrowings, View Histories  
+3. Manage Users: lihat, tambah, edit, hapus user  
+4. Manage Categories: lihat, tambah, edit, hapus kategori  
+5. Manage Units: lihat, tambah, edit, hapus unit, atur kategori (maks 2)  
+6. Manage Borrowings: lihat semua peminjaman, detail, pengembalian unit, hitung denda  
+7. View Histories: lihat semua riwayat, cetak laporan  
 
-## Contributing
+## Teknologi
+- Laravel 12  
+- MySQL  
+- Blade Templates + Tailwind CSS  
+- Laravel Breeze untuk authentication  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Struktur Database
+- **users**: data user dan role  
+- **profiles**: detail profile user  
+- **categories**: kategori unit  
+- **units**: data unit angkot  
+- **unit_category**: pivot table unit-kategori  
+- **borrowings**: peminjaman aktif  
+- **borrowing_histories**: riwayat peminjaman  
 
-## Code of Conduct
+## Validasi
+- Semua field penting required  
+- Email unik  
+- Password minimal 8 karakter  
+- Durasi peminjaman maksimal 5 hari  
+- User maksimal 2 unit aktif  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Error Handling
+- Error validasi muncul di form  
+- Redirect dengan flash message  
+- Middleware untuk role-based access  
