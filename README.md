@@ -131,9 +131,8 @@ Sistem peminjaman angkot balap berbasis web yang dibangun dengan Laravel. Sistem
 9. Build assets: `npm run build`
 10. Start server: `php artisan serve`
 
-### Akun Default
+### Default
 - **Admin**: admin@example.com / password
-- **User**: user1@example.com / password (dan lainnya)
 
 ## Struktur Database
 - **users**: Data user dengan role
